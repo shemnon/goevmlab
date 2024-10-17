@@ -78,3 +78,4 @@ require (
 )
 
 //replace github.com/ethereum/go-ethereum => /home/user/go/src/github.com/ethereum/go-ethereum
+replace github.com/ethereum/go-ethereum => github.com/shemnon/go-ethereum v0.0.0-20241016183424-257e27c8edfc // eofosaka
