@@ -19,6 +19,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/ethereum/go-ethereum/triedb"
 	"math/big"
 	"os"
 	"path/filepath"
@@ -173,7 +174,7 @@ Fork: %v
 		Balance: big.NewInt(0xffffffff),
 	}
 	var (
-		statedb, _ = state.New(common.Hash{}, state.NewDatabase(rawdb.NewMemoryDatabase()), nil)
+		statedb, _ = state.New(common.Hash{}, state.NewDatabase(triedb.NewDatabase(rawdb.NewMemoryDatabase(), nil), nil))
 		sender     = common.BytesToAddress([]byte("sender"))
 	)
 	for addr, acc := range alloc {

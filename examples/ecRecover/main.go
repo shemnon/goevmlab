@@ -18,6 +18,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/ethereum/go-ethereum/triedb"
 	"math/big"
 	"os"
 	"time"
@@ -83,7 +84,7 @@ func runit() error {
 		Balance: big.NewInt(0xffffffff),
 	}
 	var (
-		statedb, _ = state.New(common.Hash{}, state.NewDatabase(rawdb.NewMemoryDatabase()), nil)
+		statedb, _ = state.New(common.Hash{}, state.NewDatabase(triedb.NewDatabase(rawdb.NewMemoryDatabase(), nil), nil))
 		sender     = common.HexToAddress("a94f5374fce5edbc8e2a8697c15331677e6ebf0b")
 	)
 	for addr, acc := range alloc {

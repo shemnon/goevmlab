@@ -19,6 +19,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/ethereum/go-ethereum/triedb"
 	"math/big"
 	"os"
 	"time"
@@ -150,7 +151,7 @@ func runit() error {
 	fmt.Printf("output \n%v\n", string(outp))
 	//----------
 	var (
-		statedb, _ = state.New(common.Hash{}, state.NewDatabase(rawdb.NewMemoryDatabase()), nil)
+		statedb, _ = state.New(common.Hash{}, state.NewDatabase(triedb.NewDatabase(rawdb.NewMemoryDatabase(), nil), nil))
 	)
 	for addr, acc := range alloc {
 		statedb.CreateAccount(addr)
