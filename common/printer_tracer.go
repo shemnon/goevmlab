@@ -41,7 +41,7 @@ func (n *PrintingTracer) Hooks() *tracing.Hooks {
 func (n *PrintingTracer) CaptureStart(vm *tracing.VMContext, tx *types.Transaction, from common.Address) {
 	fmt.Printf("Start: from %x to %x, value: %#x\n", from, *tx.To(), tx.Value())
 }
-func (n *PrintingTracer) CaptureState(pc uint64, op byte, gas uint64, cost uint64, scope tracing.OpContext, input []byte, depth int, err error) {
+func (n *PrintingTracer) CaptureState(pc uint64, section uint64, op byte, gas uint64, cost uint64, scope tracing.OpContext, input []byte, depth int, functiondepth int, err error) {
 	var st []string
 	for _, elem := range scope.StackData() {
 		st = append(st, elem.Hex())

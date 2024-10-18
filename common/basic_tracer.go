@@ -31,7 +31,7 @@ func (n *BasicTracer) Hooks() *tracing.Hooks {
 	}
 }
 
-func (n *BasicTracer) CaptureFault(pc uint64, op byte, gas, cost uint64, scope tracing.OpContext, depth int, err error) {
+func (n *BasicTracer) CaptureFault(pc uint64, section uint64, op byte, gas, cost uint64, scope tracing.OpContext, depth int, functiondepth int, err error) {
 	fmt.Printf("CaptureFault %v\n", err)
 }
 

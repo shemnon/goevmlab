@@ -21,7 +21,7 @@ import (
 	"testing"
 )
 
-func TestStorageOps(t *testing.T){
+func TestStorageOps(t *testing.T) {
 	p := RandStorageOps()
 	fmt.Printf("%x \n", p)
 }

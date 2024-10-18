@@ -79,6 +79,8 @@ func (t *TraceLine) Get(title string) string {
 		return fmt.Sprintf("%v (0x%x)", op.Pc/ChunkSize, op.Pc/ChunkSize)
 	case "pc":
 		return fmt.Sprintf("%v (0x%x)", op.Pc, op.Pc)
+	case "section":
+		return fmt.Sprintf("%v", op.Section)
 	case "opname":
 		return op.OpName()
 	case "opcode":
@@ -89,6 +91,8 @@ func (t *TraceLine) Get(title string) string {
 		return fmt.Sprintf("%d", op.GasCost)
 	case "depth":
 		return fmt.Sprintf("%d", op.Depth)
+	case "functiondepth":
+		return fmt.Sprintf("%d", op.FunctionDepth)
 	case "refund":
 		return fmt.Sprintf("%d", op.RefundCounter)
 	case "memsize":
@@ -132,7 +136,9 @@ func (t *TraceLine) Source() string {
 func (t *TraceLine) Equals(other *TraceLine) bool {
 	if t.Op() != other.Op() ||
 		t.log.Pc != other.log.Pc ||
+		t.log.Section != other.log.Section ||
 		t.log.Depth != other.log.Depth ||
+		t.log.FunctionDepth != other.log.FunctionDepth ||
 		len(t.log.Stack) != len(other.log.Stack) ||
 		t.log.Gas != other.log.Gas {
 		return false
@@ -180,6 +186,8 @@ func convertToStructLog(op map[string]interface{}) (*logger.StructLog, error) {
 		switch k {
 		case "pc":
 			log.Pc = uint64(intify(v))
+		case "section":
+			log.Section = uint64(intify(v))
 		case "memSize":
 			log.MemorySize = intify(v)
 		case "op":
@@ -191,6 +199,8 @@ func convertToStructLog(op map[string]interface{}) (*logger.StructLog, error) {
 			log.GasCost = uint64(intify(v))
 		case "depth":
 			log.Depth = int(v.(float64))
+		case "functionDepth":
+			log.FunctionDepth = int(v.(float64))
 		case "refund":
 			log.RefundCounter = uint64(intify(v))
 		case "stack":
