@@ -25,7 +25,6 @@ require (
 	github.com/VictoriaMetrics/fastcache v1.12.2 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/bits-and-blooms/bitset v1.13.0 // indirect
-	github.com/btcsuite/btcd/btcec/v2 v2.3.4 // indirect
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
 	github.com/cockroachdb/errors v1.11.3 // indirect
 	github.com/cockroachdb/fifo v0.0.0-20240606204812-0bbfbd93a7ce // indirect
@@ -82,4 +81,4 @@ require (
 )
 
 //replace github.com/ethereum/go-ethereum => /home/user/go/src/github.com/ethereum/go-ethereum
-replace github.com/ethereum/go-ethereum => github.com/shemnon/go-ethereum v0.0.0-20241018143105-f3e9c17f99c0 // eofosaka
+replace github.com/ethereum/go-ethereum => github.com/shemnon/go-ethereum v0.0.0-20241018211021-aea7467e8fa1

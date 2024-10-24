@@ -136,7 +136,7 @@ func (d *dumbTracer) Hooks() *tracing.Hooks {
 	}
 }
 
-func (d *dumbTracer) CaptureState(pc uint64, op byte, gas uint64, cost uint64, scope tracing.OpContext, input []byte, depth int, err error) {
+func (d *dumbTracer) CaptureState(pc uint64, section uint64, op byte, gas uint64, cost uint64, scope tracing.OpContext, input []byte, depth int, functionDepth int, err error) {
 	if op == byte(vm.STATICCALL) {
 		d.counter++
 	}
@@ -145,7 +145,7 @@ func (d *dumbTracer) CaptureState(pc uint64, op byte, gas uint64, cost uint64, s
 	}
 }
 
-func (n *dumbTracer) CaptureFault(pc uint64, op byte, gas, cost uint64, scope tracing.OpContext, depth int, err error) {
+func (n *dumbTracer) CaptureFault(pc uint64, section uint64, op byte, gas, cost uint64, scope tracing.OpContext, depth int, functionDepth int, err error) {
 	fmt.Printf("CaptureFault %v\n", err)
 }
 

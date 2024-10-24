@@ -136,11 +136,14 @@ func (t *TraceLine) Source() string {
 func (t *TraceLine) Equals(other *TraceLine) bool {
 	if t.Op() != other.Op() ||
 		t.log.Pc != other.log.Pc ||
-		t.log.Section != other.log.Section ||
 		t.log.Depth != other.log.Depth ||
-		t.log.FunctionDepth != other.log.FunctionDepth ||
 		len(t.log.Stack) != len(other.log.Stack) ||
 		t.log.Gas != other.log.Gas {
+		return false
+	}
+	// EIP-7519 fields.  If both are non-zero they must match
+	if (t.log.Section != 0 && other.log.Section != 0 && t.log.Section != other.log.Section) ||
+		(t.log.FunctionDepth != 0 && other.log.FunctionDepth != 0 && t.log.FunctionDepth != other.log.FunctionDepth) {
 		return false
 	}
 	// Also inspect stack
